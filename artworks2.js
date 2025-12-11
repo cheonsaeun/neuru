@@ -357,7 +357,7 @@ new p5(sketch9);
 
 
 
-// 페이지 내의 <audio> 태그들을 찾아와 play 이벤트가 발생하는지 감시힘
+// 페이지 내의 <audio> 태그들을 찾아와 play 이벤트가 발생하는지 확인
 // 방금 재생한 오디오가 아닌 다른 오디오라면 일시정지 시키기
 document.addEventListener('DOMContentLoaded', function () {
     const allAudios = document.querySelectorAll('audio');

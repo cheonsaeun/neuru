@@ -179,10 +179,6 @@ img {
 /* ============================== */
 /*          4. 메인 페이지          */
 /* ============================== */
-.main-content {
-  position: relative;
-  z-index: 1;
-}
 
 /* 배경 영상 */
 .video-container {
@@ -245,6 +241,12 @@ img {
   padding-bottom: 12px;
 }
 
+/* 메인 콘텐츠 영역 */
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
 /* 그라데이션 공백 */
 .gap {
   width: 100%;
@@ -262,23 +264,19 @@ img {
   position: relative;
   z-index: 2;
 }
-
 .section-title {
   font-size: 44px;
   font-weight: 700;
   margin-bottom: 40px;
 }
-
 .card-grid {
   display: flex;
   gap: 32px;
   margin-bottom: 150px;
 }
-
 .card {
   flex: 1;
 }
-
 .card-image {
   width: 100%;
   aspect-ratio: 1/1;
@@ -286,14 +284,12 @@ img {
   overflow: hidden;
   margin-bottom: 20px;
 }
-
 .card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s;
 }
-
 .card:hover .card-image img {
   transform: scale(1.05);
 }
@@ -302,7 +298,6 @@ img {
   font-size: 20px;
   margin-bottom: 5px;
 }
-
 .card-text p {
   font-size: 18px;
   color: var(--text-sub);
@@ -349,7 +344,6 @@ img {
   z-index: 110;
   pointer-events: none;
 }
-
 .toggle-container {
   background-color: rgba(120, 120, 120, 0.2);
   padding: 6px;
@@ -359,7 +353,6 @@ img {
   pointer-events: auto;
   backdrop-filter: blur(10px);
 }
-
 .toggle-btn {
   padding: 8px 30px;
   border-radius: 30px;
@@ -371,16 +364,13 @@ img {
   border: none;
   background: none;
 }
-
 .toggle-btn.active {
   background-color: var(--text-main);
   color: var(--bg-color);
 }
-
 .toggle-btn:hover {
   color: var(--text-main);
 }
-
 .toggle-btn.active:hover {
   color: var(--bg-color);
 }
@@ -392,7 +382,6 @@ img {
   display: flex;
   justify-content: flex-start;
 }
-
 .custom-audio {
   width: 100%;
   height: 54px;
@@ -400,7 +389,6 @@ img {
   opacity: 0.6;
   transition: opacity 0.3s;
 }
-
 .custom-audio:hover {
   opacity: 0.8;
 }
@@ -411,11 +399,9 @@ img {
   gap: 40px;
   padding-bottom: 60px;
 }
-
 .artwork-media {
   flex: 1;
 }
-
 .artwork-desc {
   flex: 1;
   background-color: var(--bg-card);
@@ -465,17 +451,14 @@ img {
   gap: 60px;
   margin-bottom: 120px;
 }
-
 .about-poster {
   width: 470px;
   flex-shrink: 0;
 }
-
 .about-info h3 {
   font-size: 24px;
   margin: 48px 0 20px;
 }
-
 .about-info p {
   color: var(--text-sub);
   margin-bottom: 12px;
@@ -484,7 +467,6 @@ img {
 .team-section {
   margin-top: 100px;
 }
-
 .team-title {
   font-size: 44px;
   margin-bottom: 24px;
@@ -498,7 +480,6 @@ img {
   gap: 20px;
   margin-top: 30px;
 }
-
 .team-card {
   background-color: var(--text-main);
   color: var(--bg-color);
@@ -516,13 +497,11 @@ img {
   font-weight: 700;
   font-size: 18px;
 }
-
 .member-desc {
   font-size: 14px;
   color: var(--border-color);
   line-height: 1.5;
 }
-
 .member-email {
   font-size: 13px;
   color: var(--text-sub);
@@ -545,7 +524,6 @@ img {
   justify-content: center;
   align-items: center;
 }
-
 canvas {
   display: block;
   width: 100%;
@@ -561,7 +539,6 @@ canvas {
   flex-direction: column;
   cursor: pointer;
 }
-
 .code-header {
   display: flex;
   justify-content: space-between;
@@ -569,18 +546,15 @@ canvas {
   border-bottom: 1px solid var(--border-color);
   padding: 10px 15px;
 }
-
 .code-container:hover .code-title,
 .code-container:hover .toggle-icon {
   color: var(--text-main)
 }
-
 .code-title {
   font-family: monospace;
   color: var(--text-sub);
   font-size: 14px;
 }
-
 .toggle-icon {
   color: var(--text-sub);
   transition: transform 0.3s ease;
@@ -591,12 +565,10 @@ canvas {
   overflow-y: auto;
   background-color: var(--bg-card);
 }
-
 .code-container.open .code-body {
   max-height: none;
   height: auto;
 }
-
 .code-container.open .toggle-icon {
   transform: rotate(180deg);
 }
