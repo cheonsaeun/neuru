@@ -1,66 +1,70 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artworks - 한과 흥, 그리고 정</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-    <script src="artworks1.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artworks - 한과 흥, 그리고 정</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="artworks1.js"></script>
 </head>
 
 
 <body>
-    <header class="header">
-        <a href="index.html" class="logo-link">
-            <img src="Assets/images/logo.svg" alt="느루" class="header-logo">
-        </a>
-        
-        <nav class="nav">
-            <ul>
-                <li><a href="artworks1.html" style="color: var(--text-main)">작품목록</a></li>
-                <li><a href="gallery.html">사진첩</a></li>
-                <li><a href="about.html">소개</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="header">
+    <a href="index.html" class="logo-link">
+      <img src="Assets/images/logo.svg" alt="느루" class="header-logo">
+    </a>
 
-    <div class="sub-header">
-        <div class="toggle-container">
-            <a href="artworks1.html" class="toggle-btn active">한 恨</a>
-            <a href="artworks2.html" class="toggle-btn">흥 興</a>
-        </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="artworks1.html" style="color: var(--text-main)">작품목록</a></li>
+        <li><a href="gallery.html">사진첩</a></li>
+        <li><a href="about.html">소개</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="sub-header">
+    <div class="toggle-container">
+      <a href="artworks1.html" class="toggle-btn active">한 恨</a>
+      <a href="artworks2.html" class="toggle-btn">흥 興</a>
+    </div>
+  </div>
+
+  <main class="inner-container">
+    <h2 class="page-title">Part 1<br>– 정의 상실, 한</h2>
+
+    <div class="audio-wrapper">
+      <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
+        <source src="Assets/audio/Part1.mp3" type="audio/mpeg">
+        브라우저가 오디오 태그를 지원하지 않습니다.
+      </audio>
     </div>
 
-    <main class="inner-container">
-        <h2 class="page-title">Part 1<br>– 정의 상실, 한</h2>
-
-        <div class="audio-wrapper">
-            <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
-                <source src="Assets/audio/Part1.mp3" type="audio/mpeg">
-                브라우저가 오디오 태그를 지원하지 않습니다.
-            </audio>
-        </div>
-
-        <p style="margin-bottom: 60px;">
-            하루하루 반복되는 매일 같은 출근길은 오늘도 차가운 공기만이 흐른다. 사람들도 가득 차 있는 버스 안이지만, 불신과 의심이 팽배한 현대 사회에서 그들은 서로에게 닿지 않으려 안간힘을 쓰고 있다. 이러한 흑백 사회 속에서 생동감은 찾아볼 수 없고, 도와달라는 모스 부호만이 맴돈다.
-        </p>
+    <p style="margin-bottom: 60px;">
+      하루하루 반복되는 매일 같은 출근길은 오늘도 차가운 공기만이 흐른다. 사람들도 가득 차 있는 버스 안이지만, 불신과 의심이 팽배한 현대 사회에서 그들은 서로에게 닿지 않으려 안간힘을 쓰고 있다. 이러한
+      흑백 사회 속에서 생동감은 찾아볼 수 없고, 도와달라는 모스 부호만이 맴돈다.
+    </p>
 
 
 
-        <div class="artwork-item">
-            <div class="artwork-media">
-                <div id="canvas-1" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-1" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 1-1 벽면
 // 마우스 클릭 = 새로고침
 // 참고: https://openprocessing.org/sketch/1452928
@@ -318,25 +322,25 @@ function draw() {
   image(c, width / 2, height / 2, _minWindowWidth, _minWindowWidth);
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 
 
-            <div class="artwork-item">
-            <div class="artwork-media">
-                <div id="canvas-2" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-2" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 2-1 바닥
 // 마우스 클릭 = 새로고침
 // 참고: https://openprocessing.org/sketch/1624119
@@ -420,36 +424,37 @@ function screenReset() {
   _object = new GradationRect(_numColor);
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 
-        <div class="audio-wrapper" style="margin-top: 60px; padding-top: 60px; border-top: 1px solid #333;">
-            <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
-                <source src="Assets/audio/Part2.mp3" type="audio/mpeg">
-                브라우저가 오디오 태그를 지원하지 않습니다.
-            </audio>
-        </div>
+    <div class="audio-wrapper" style="margin-top: 60px; padding-top: 60px; border-top: 1px solid #333;">
+      <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
+        <source src="Assets/audio/Part2.mp3" type="audio/mpeg">
+        브라우저가 오디오 태그를 지원하지 않습니다.
+      </audio>
+    </div>
 
-        <p style="margin-bottom: 60px;">
-            계속되는 실패, 타인과의 비교, 많은 것들이 사회를 옥죄이고 있다. 쓴웃음을 지어보지만, 기댈 곳 하나 없이 홀로 살아가는 각자의 마음 속에는 점차 “한”이 쌓여만 간다. 자신 외의 것들에 대해서는 관심을 가지지 않는 배척적인 분위기 속에서, 자유로이 숨쉬기 어려운 답답한 사회를 살아가는 이들은 힘겹게 하루하루를 연명해 나간다.
-        </p>
+    <p style="margin-bottom: 60px;">
+      계속되는 실패, 타인과의 비교, 많은 것들이 사회를 옥죄이고 있다. 쓴웃음을 지어보지만, 기댈 곳 하나 없이 홀로 살아가는 각자의 마음 속에는 점차 “한”이 쌓여만 간다. 자신 외의 것들에 대해서는 관심을
+      가지지 않는 배척적인 분위기 속에서, 자유로이 숨쉬기 어려운 답답한 사회를 살아가는 이들은 힘겹게 하루하루를 연명해 나간다.
+    </p>
 
 
-        <div class="artwork-item">
-            <div class="artwork-media">
-                <div id="canvas-3" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-3" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 2-2 벽면
 // 마우스 클릭 = 새로고침
 // 참고:
@@ -535,25 +540,25 @@ class Star {
   }
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        
 
-        <div class="artwork-item">
-            <div class="artwork-media">
-                <div id="canvas-4" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-4" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 2-2 바닥
 // 마우스 클릭 = 새로고침
 // 참고: https://openprocessing.org/sketch/1284913
@@ -604,25 +609,25 @@ function draw() {
   frameCount++;
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 
 
-        <div class="artwork-item">
-            <div class="artwork-media">
-                 <div id="canvas-5" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-5" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 2-4 벽면
 // 마우스 클릭 = 새로고침
 // 키보드 = 일시정지
@@ -687,25 +692,25 @@ function draw() {
   }
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 
 
-        <div class="artwork-item">
-            <div class="artwork-media">
-                 <div id="canvas-6" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-6" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 2-4 바닥
 // 마우스 클릭 = 새로고침
 // 참고: https://openprocessing.org/sketch/1414758
@@ -734,41 +739,52 @@ function draw() {
   }
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 
-    </main>
+  </main>
 
-
-        <footer class="footer">
-        <div class="footer-left">
-            <img src="Assets/images/logo.svg" alt="느루" class="footer-logo">
-            <p>한꺼번에 몰아치지 아니하고 오래도록.</p>
-            <a href="https://www.instagram.com/neuru_scg/" target="_blank" class="sns-link">
-                <img src="Assets/images/instagram.svg" alt="인스타그램" class="sns-icon-img">
-            </a>
-        </div>
-        <div class="footer-right">
-            <div class="footer-col">
-                <h4>팀 느루</h4>
-                <ul>
-                    <li>김성준</li><li>서리라</li><li>이서연</li><li>천사은</li><li>한수민</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>협력</h4>
-                <ul>
-                    <li>김단</li><li>박규리</li><li>서민주</li><li>임지우</li><li>정지혜</li><li>홍승주</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>웹 개발</h4>
-                <ul><li>천사은</li></ul>
-            </div>
-        </div>
-    </footer>
+  <footer class="footer">
+    <div class="footer-left">
+      <img src="Assets/images/logo.svg" alt="느루" class="footer-logo">
+      <p>한꺼번에 몰아치지 아니하고 오래도록.</p>
+      <a href="https://www.instagram.com/neuru_scg/" target="_blank" class="sns-link">
+        <img src="Assets/images/instagram.svg" alt="인스타그램" class="sns-icon-img">
+      </a>
+    </div>
+    <div class="footer-right">
+      <div class="footer-col">
+        <h4>팀 느루</h4>
+        <ul>
+          <li>김성준</li>
+          <li>서리라</li>
+          <li>이서연</li>
+          <li>천사은</li>
+          <li>한수민</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>협력</h4>
+        <ul>
+          <li>김단</li>
+          <li>박규리</li>
+          <li>서민주</li>
+          <li>임지우</li>
+          <li>정지혜</li>
+          <li>홍승주</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>웹 개발</h4>
+        <ul>
+          <li>천사은</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 </body>
+
 </html>

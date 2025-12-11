@@ -152,13 +152,13 @@ const sketch9 = (p) => {
     let canvas;
     let message = '흥';
     let font;
-    let fontFile = "Assets/NanumGothic.ttf"; 
-    let fontSize = 85; 
+    let fontFile = "Assets/NanumGothic.ttf";
+    let fontSize = 85;
 
-    let textData = []; 
-    let dotsCoordinate = []; 
+    let textData = [];
+    let dotsCoordinate = [];
     let particles = [];
-    let scaleRate; 
+    let scaleRate;
 
     let inpactRange = 120;
     let isMousePressed = false;
@@ -173,14 +173,14 @@ const sketch9 = (p) => {
             this.x = x;
             this.y = y;
             this.r = 2;
-            this.originalX = x; 
-            this.originalY = y; 
+            this.originalX = x;
+            this.originalY = y;
             this.colors = ["#A71C1C", "#A71C1C", "#A71C1C",
-                           "#032A53", "#032A53", "#032A53",
-                           "#e5e1dc", "#e5e1dc",
-                           "#70B18D", "#33614A", "#f3a712"];
+                "#032A53", "#032A53", "#032A53",
+                "#e5e1dc", "#e5e1dc",
+                "#70B18D", "#33614A", "#f3a712"];
             this.color = p.random(this.colors);
-            this.density = p.random(30) + 10; 
+            this.density = p.random(30) + 10;
             this.amplitude = p.random(40) + 10;
         }
 
@@ -256,7 +256,7 @@ const sketch9 = (p) => {
 
 
         let marginX = (p.width - particleTextWidth) / 2;
-        let marginY = p.height / 5 ;
+        let marginY = p.height / 5;
 
         particles = createParticles(scaleRate, marginX, marginY);
     }
@@ -280,7 +280,7 @@ const sketch9 = (p) => {
         pg.textFont(font);
         pg.textAlign(p.LEFT, p.TOP);
         pg.text(message, padding, padding);
-        
+
         pg.loadPixels();
 
         for (let y = 0; y < pg.height; y++) {
@@ -288,7 +288,7 @@ const sketch9 = (p) => {
             for (let x = 0; x < pg.width; x++) {
                 let index = (y * pg.width + x) * 4;
                 let r = pg.pixels[index];
-                row.push([r, r, r, 255]); 
+                row.push([r, r, r, 255]);
             }
             data.push(row);
         }
@@ -359,7 +359,7 @@ new p5(sketch9);
 
 // 페이지 내의 <audio> 태그들을 찾아와 play 이벤트가 발생하는지 감시힘
 // 방금 재생한 오디오가 아닌 다른 오디오라면 일시정지 시키기
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const allAudios = document.querySelectorAll('audio');
     allAudios.forEach(audio => {
         audio.addEventListener('play', (event) => {

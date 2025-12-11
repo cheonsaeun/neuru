@@ -9,7 +9,7 @@ const sketch1 = (p) => {
     let _minWidth;
     let _aryPoints = [];
     let _numTile;
-    let _resolution = 240; 
+    let _resolution = 240;
     let pg;
 
     p.setup = () => {
@@ -188,13 +188,13 @@ const sketch2 = (p) => {
         let container = document.getElementById('canvas-2');
         let canvas = p.createCanvas(container.offsetWidth, container.offsetHeight);
         canvas.parent('canvas-2');
-        
+
         _minWidth = p.min(p.width, p.height);
 
         p.frameRate(30);
         p.noStroke();
         p.rectMode(p.CENTER);
-        
+
         _numColor = 17;
         _object = new GradationRect(_numColor);
     };
@@ -211,7 +211,7 @@ const sketch2 = (p) => {
             _object = new GradationRect(_numColor);
         }
     };
-    
+
     p.windowResized = () => {
         let container = document.getElementById('canvas-2');
         p.resizeCanvas(container.offsetWidth, container.offsetHeight);
@@ -308,7 +308,7 @@ const sketch3 = (p) => {
         }
         p.colorMode(p.HSB, 100);
         p.strokeWeight(1);
-        
+
         for (let i = starsNum; i--;) {
             stars.push(new Star(i));
         }
@@ -373,7 +373,7 @@ const sketch3 = (p) => {
             p.setup();
         }
     };
-    
+
     // 창 크기 변경 시 대응
     p.windowResized = () => {
         let c = document.getElementById('canvas-3');
@@ -387,7 +387,7 @@ const sketch3 = (p) => {
 /*          4.  2-2 바닥           */
 /* ============================== */
 const sketch4 = (p) => {
-    let incX=0.04, incY=0.05, distance=10, wavesHeight=5, zOff=0;
+    let incX = 0.04, incY = 0.05, distance = 10, wavesHeight = 5, zOff = 0;
     p.setup = () => {
         let c = document.getElementById('canvas-4');
         p.createCanvas(c.offsetWidth, c.offsetHeight).parent('canvas-4');
@@ -426,7 +426,7 @@ const sketch4 = (p) => {
 /*          5.  2-4 벽면           */
 /* ============================== */
 const sketch5 = (p) => {
-let message = "한"; // 텍스트 메시지
+    let message = "한"; // 텍스트 메시지
     let fontFile = "Assets/NanumMyeongjoExtraBold.ttf"; // 사용할 폰트 파일 (경로 수정됨)
     let font;
     let fontSize = 300; // 텍스트 크기 (캔버스 크기에 맞춰 조절)
@@ -471,7 +471,7 @@ let message = "한"; // 텍스트 메시지
             message,
             p.width / 2 - p.textWidth(message) / 2,
             p.height / 2 + fontSize / 3, // 높이 중앙 정렬 보정
-            fontSize, 
+            fontSize,
             { sampleFactor: fontSampleFactor }
         );
     };
@@ -479,8 +479,8 @@ let message = "한"; // 텍스트 메시지
     p.draw = () => {
         if (p.keyIsPressed === false) { // 키보드를 누르고 있을 때 일시정지
             for (let i = 0; i < points.length; i++) {
-                let ptObj = points[i]; 
-                
+                let ptObj = points[i];
+
                 let noiseX = ptObj.x * noiseZoom;
                 let noiseY = ptObj.y * noiseZoom;
                 let noiseZ = 0;
@@ -489,7 +489,7 @@ let message = "한"; // 텍스트 메시지
                 let newPY = ptObj.y + p.map(p.noise(noiseX, noiseY, noiseZ + 214), 0, 1, -lineSpeed, lineSpeed);
 
                 p.line(ptObj.x, ptObj.y, newPX, newPY);
-                
+
                 ptObj.x = newPX;
                 ptObj.y = newPY;
             }
@@ -573,7 +573,7 @@ new p5(sketch6);
 
 // 페이지 내의 <audio> 태그들을 찾아와 play 이벤트가 발생하는지 감시힘
 // 방금 재생한 오디오가 아닌 다른 오디오라면 일시정지 시키기
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const allAudios = document.querySelectorAll('audio');
     allAudios.forEach(audio => {
         audio.addEventListener('play', (event) => {

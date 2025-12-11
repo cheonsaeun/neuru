@@ -1,69 +1,73 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artworks - 한과 흥, 그리고 정</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/shader-park-core/dist/shader-park-p5.js"></script>
-    <script src="shaderParkCode.js"></script>
-    <script src="artworks2.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artworks - 한과 흥, 그리고 정</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/shader-park-core/dist/shader-park-p5.js"></script>
+  <script src="shaderParkCode.js"></script>
+  <script src="artworks2.js"></script>
 </head>
 
 
 <body>
-    <header class="header">
-        <a href="index.html" class="logo-link">
-            <img src="Assets/images/logo.svg" alt="느루" class="header-logo">
-        </a>
-        
-        <nav class="nav">
-            <ul>
-                <li><a href="artworks1.html" style="color: var(--text-main)">작품목록</a></li>
-                <li><a href="gallery.html">사진첩</a></li>
-                <li><a href="about.html">소개</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="header">
+    <a href="index.html" class="logo-link">
+      <img src="Assets/images/logo.svg" alt="느루" class="header-logo">
+    </a>
 
-    <div class="sub-header">
-        <div class="toggle-container">
-            <a href="artworks1.html" class="toggle-btn">한 恨</a>
-            <a href="artworks2.html" class="toggle-btn active">흥 興</a>
-        </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="artworks1.html" style="color: var(--text-main)">작품목록</a></li>
+        <li><a href="gallery.html">사진첩</a></li>
+        <li><a href="about.html">소개</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="sub-header">
+    <div class="toggle-container">
+      <a href="artworks1.html" class="toggle-btn">한 恨</a>
+      <a href="artworks2.html" class="toggle-btn active">흥 興</a>
+    </div>
+  </div>
+
+  <main class="inner-container">
+    <h2 class="page-title">Part 2<br>– 정의 회복, 흥</h2>
+
+    <div class="audio-wrapper">
+      <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
+        <source src="Assets/audio/Part3.mp3" type="audio/mpeg">
+        브라우저가 오디오 태그를 지원하지 않습니다.
+      </audio>
     </div>
 
-    <main class="inner-container">
-        <h2 class="page-title">Part 2<br>– 정의 회복, 흥</h2>
-
-        <div class="audio-wrapper">
-            <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
-                <source src="Assets/audio/Part3.mp3" type="audio/mpeg">
-                브라우저가 오디오 태그를 지원하지 않습니다.
-            </audio>
-        </div>
-
-        <p style="color:#989898; margin-bottom: 60px;">
-            “한”은 결국 극에 다다랐다. 혼자서는 더 이상 나아갈 수 없는 상황에 처하게 된 이들의 마음에 응어리가 진다. 괴로워하지만 발버둥칠 수록 엉켜버릴 뿐이다. 누군가의 손길이 필요한 때. 하나의 손은 점차 여러명의 도움으로 번지고, “살풀이”로 한이 해소되어 간다. 사회에는 점차 “정”이 퍼져나가며 따뜻한 색감을 더한다.
-        </p>
+    <p style="color:#989898; margin-bottom: 60px;">
+      “한”은 결국 극에 다다랐다. 혼자서는 더 이상 나아갈 수 없는 상황에 처하게 된 이들의 마음에 응어리가 진다. 괴로워하지만 발버둥칠 수록 엉켜버릴 뿐이다. 누군가의 손길이 필요한 때. 하나의 손은 점차
+      여러명의 도움으로 번지고, “살풀이”로 한이 해소되어 간다. 사회에는 점차 “정”이 퍼져나가며 따뜻한 색감을 더한다.
+    </p>
 
 
 
-        <div class="artwork-item">
-            <div class="artwork-media">
-                <div id="canvas-7" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-7" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 3-1 벽면
 // 참고: http://openprocessing.org/sketch/2044657/
 // Shader Park API: https://docs.shaderpark.com/references-js/
@@ -129,35 +133,36 @@ function shaderParkCode() {
   color(newColor);
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 
-        <div class="audio-wrapper" style="margin-top: 60px; padding-top: 60px; border-top: 1px solid #333;">
-            <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
-                <source src="Assets/audio/Part4.mp3" type="audio/mpeg">
-                브라우저가 오디오 태그를 지원하지 않습니다.
-            </audio>
-        </div>
+    <div class="audio-wrapper" style="margin-top: 60px; padding-top: 60px; border-top: 1px solid #333;">
+      <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
+        <source src="Assets/audio/Part4.mp3" type="audio/mpeg">
+        브라우저가 오디오 태그를 지원하지 않습니다.
+      </audio>
+    </div>
 
-        <p style="margin-bottom: 60px;">
-            “정”을 되찾은 사회는 점차 생기를 얻는다. 사람들의 가슴 속에는 점차 잊고있던 “흥”겨움이 꿈틀거리기 시작한다. “흥”은 점점 서로에게 물들어가고 모두 함께 신명나게 춤을 추며 비로소 각자의 개성을 드러낸다. 정갈하게 정리되어 있던 사회의 질서가 깨어지며 난장이 벌어지지만, 사람들의 얼굴에는 웃음이 만개한다.
-        </p>
+    <p style="margin-bottom: 60px;">
+      “정”을 되찾은 사회는 점차 생기를 얻는다. 사람들의 가슴 속에는 점차 잊고있던 “흥”겨움이 꿈틀거리기 시작한다. “흥”은 점점 서로에게 물들어가고 모두 함께 신명나게 춤을 추며 비로소 각자의 개성을
+      드러낸다. 정갈하게 정리되어 있던 사회의 질서가 깨어지며 난장이 벌어지지만, 사람들의 얼굴에는 웃음이 만개한다.
+    </p>
 
-        <div class="artwork-item">
-            <div class="artwork-media">
-                 <div id="canvas-8" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-8" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 4-1 벽면
 // 마이크 입력 음량에 따라 원이 생성됩니다.
 
@@ -214,25 +219,25 @@ function draw() {
   }
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 
 
-        <div class="artwork-item">
-            <div class="artwork-media">
-                 <div id="canvas-9" class="canvas-container"></div>
-            </div>
-            <div class="artwork-desc">
-                <div class="code-container" onclick="toggleCode(this)">
-                    <div class="code-header">
-                        <span class="code-title">p5.js code</span>
-                        <span class="toggle-icon">▼</span>
-                    </div>
-                    <div class="code-body">
-<pre>
+    <div class="artwork-item">
+      <div class="artwork-media">
+        <div id="canvas-9" class="canvas-container"></div>
+      </div>
+      <div class="artwork-desc">
+        <div class="code-container" onclick="toggleCode(this)">
+          <div class="code-header">
+            <span class="code-title">p5.js code</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="code-body">
+            <pre>
 // 4-2 벽면
 // 마이크 입력 음량에 따라 파티클 크기가 변합니다
 // 글자를 클릭하면 파티클이 퍼지는 효과를 볼 수 있습니다
@@ -439,41 +444,53 @@ function keyPressed() {
   inpactRange += 10;
 }
 </pre>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 
-    </main>
+  </main>
 
 
-        <footer class="footer">
-        <div class="footer-left">
-            <img src="Assets/images/logo.svg" alt="느루" class="footer-logo">
-            <p>한꺼번에 몰아치지 아니하고 오래도록.</p>
-            <a href="https://www.instagram.com/neuru_scg/" target="_blank" class="sns-link">
-                <img src="Assets/images/instagram.svg" alt="인스타그램" class="sns-icon-img">
-            </a>
-        </div>
-        <div class="footer-right">
-            <div class="footer-col">
-                <h4>팀 느루</h4>
-                <ul>
-                    <li>김성준</li><li>서리라</li><li>이서연</li><li>천사은</li><li>한수민</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>협력</h4>
-                <ul>
-                    <li>김단</li><li>박규리</li><li>서민주</li><li>임지우</li><li>정지혜</li><li>홍승주</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>웹 개발</h4>
-                <ul><li>천사은</li></ul>
-            </div>
-        </div>
-    </footer>
+  <footer class="footer">
+    <div class="footer-left">
+      <img src="Assets/images/logo.svg" alt="느루" class="footer-logo">
+      <p>한꺼번에 몰아치지 아니하고 오래도록.</p>
+      <a href="https://www.instagram.com/neuru_scg/" target="_blank" class="sns-link">
+        <img src="Assets/images/instagram.svg" alt="인스타그램" class="sns-icon-img">
+      </a>
+    </div>
+    <div class="footer-right">
+      <div class="footer-col">
+        <h4>팀 느루</h4>
+        <ul>
+          <li>김성준</li>
+          <li>서리라</li>
+          <li>이서연</li>
+          <li>천사은</li>
+          <li>한수민</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>협력</h4>
+        <ul>
+          <li>김단</li>
+          <li>박규리</li>
+          <li>서민주</li>
+          <li>임지우</li>
+          <li>정지혜</li>
+          <li>홍승주</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>웹 개발</h4>
+        <ul>
+          <li>천사은</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 </body>
+
 </html>
