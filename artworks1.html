@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artworks - 한과 흥, 그리고 정</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="artworks1.js"></script>
+</head>
+
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo-link">
+            <img src="Assets/images/logo.svg" alt="느루" class="header-logo">
+        </a>
+        
+        <nav class="nav">
+            <ul>
+                <li><a href="artworks1.html" style="color: var(--text-main)">작품목록</a></li>
+                <li><a href="gallery.html">사진첩</a></li>
+                <li><a href="about.html">소개</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="sub-header">
+        <div class="toggle-container">
+            <a href="artworks1.html" class="toggle-btn active">한 恨</a>
+            <a href="artworks2.html" class="toggle-btn">흥 興</a>
+        </div>
+    </div>
+
+    <main class="inner-container">
+        <h2 class="page-title">Part 1<br>– 정의 상실, 한</h2>
+
+        <div class="audio-wrapper">
+            <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
+                <source src="Assets/audio/Part1.mp3" type="audio/mpeg">
+                브라우저가 오디오 태그를 지원하지 않습니다.
+            </audio>
+        </div>
+
+        <p style="margin-bottom: 60px;">
+            하루하루 반복되는 매일 같은 출근길은 오늘도 차가운 공기만이 흐른다. 사람들도 가득 차 있는 버스 안이지만, 불신과 의심이 팽배한 현대 사회에서 그들은 서로에게 닿지 않으려 안간힘을 쓰고 있다. 이러한 흑백 사회 속에서 생동감은 찾아볼 수 없고, 도와달라는 모스 부호만이 맴돈다.
+        </p>
+
+
+
+        <div class="artwork-item">
+            <div class="artwork-media">
+                <div id="canvas-1" class="canvas-container"></div>
+            </div>
+            <div class="artwork-desc">
+                <div class="code-container" onclick="toggleCode(this)">
+                    <div class="code-header">
+                        <span class="code-title">p5.js code</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="code-body">
+<pre>
+// 1-1 벽면
+// 마우스 클릭 = 새로고침
+// 참고: https://openprocessing.org/sketch/1452928
+
+let _minWidth;
+let _aryPoints = [];
+let _numTile;
+let _d;
+let _type;
+let _unitTime;
+let _minWindowWidth;
+let _resolution;
+
+function setup() {
+  _resolution = 240;
+  createCanvas(_resolution, _resolution);
+  noSmooth(); // for dithering
+  pixelDensity(1); // for dithering
+  _minWidth = min(width, height) * 0.8;
+  _minWindowWidth = min(windowWidth, windowHeight);
+  colorMode(HSB, 360, 100, 100, 255);
+  ellipseMode(RADIUS);
+  imageMode(CENTER);
+
+  frameRate(36);
+  noStroke();
+  ellipseMode(RADIUS);
+  setObject();
+}
+
+function setObject() {
+  let numPoints = 16;
+  let xy1Start = createVector(0, 0);
+  let xy2Start = createVector(0, 0);
+  let unitTime = 30;
+  _numTile = 4;
+  let xyShift = createVector(_minWidth / _numTile, 0);
+  _aryPoints = [];
+  let maxR = (_minWidth / _numTile / 2) * 0.8;
+  let d = 10;
+  let type = "inout";
+
+  for (let i = 0; i < numPoints; i++) {
+    let xy1End = p5.Vector.add(xy1Start, p5.Vector.rotate(xyShift, PI / 2 * random([0, 1, 2, 3])));
+    let xy2End = p5.Vector.add(xy2Start, p5.Vector.rotate(xyShift, PI / 2 * random([0, 1, 2, 3])));
+    let r = (maxR / numPoints) * (i + 1);
+    _aryPoints[i] = new Points(xy1Start, xy1End, xy2Start, xy2End, r, unitTime, xyShift, type, d);
+  }
+}
+
+class Points {
+  constructor(xy1Start, xy1End, xy2Start, xy2End, r, unitTime, xyShift, type, d) {
+    this.xy1Start = xy1Start;
+    this.xy1End = xy1End;
+    this.xy2Start = xy2Start;
+    this.xy2End = xy2End;
+    this.r = r;
+    this.unitTime = unitTime;
+    this.timeNumber = 0;
+    this.count = 0;
+    this.xyShift = xyShift;
+    this.d = d;
+    this.type = type;
+    let colNum = 5;
+    this.col = color(100 / (colNum - 1) * random(colNum));
+  }
+
+  update() {
+    let unitTime = this.unitTime;
+    this.xy1Current = p5.Vector.lerp(this.xy1Start, this.xy1End, easing(unitTime, this.count, this.type, this.d));
+    this.xy2Current = p5.Vector.lerp(this.xy2Start, this.xy2End, easing(unitTime, this.count, this.type, this.d));
+    this.count++;
+    if (this.count > unitTime) {
+      this.count = 0;
+      this.xy1Start = this.xy1End;
+      let xy1EndNew = p5.Vector.add(this.xy1End, p5.Vector.rotate(this.xyShift, PI / 2 * random([0, 1, 2, 3])));
+      let margin = 1.01;
+      while (
+        xy1EndNew.x > _minWidth / 2 * margin ||
+        xy1EndNew.x < -_minWidth / 2 * margin ||
+        xy1EndNew.y > _minWidth / 2 * margin ||
+        xy1EndNew.y < -_minWidth / 2 * margin
+      ) {
+        xy1EndNew = p5.Vector.add(this.xy1End, p5.Vector.rotate(this.xyShift, PI / 2 * random([0, 1, 2, 3])));
+      }
+      this.xy1End = xy1EndNew;
+      this.xy2Start = this.xy2End;
+      let xy2EndNew = p5.Vector.add(this.xy2End, p5.Vector.rotate(this.xyShift, PI / 2 * random([0, 1, 2, 3])));
+      while (
+        xy2EndNew.x > _minWidth / 2 * margin ||
+        xy2EndNew.x < -_minWidth / 2 * margin ||
+        xy2EndNew.y > _minWidth / 2 * margin ||
+        xy2EndNew.y < -_minWidth / 2 * margin
+      ) {
+        xy2EndNew = p5.Vector.add(this.xy2End, p5.Vector.rotate(this.xyShift, PI / 2 * random([0, 1, 2, 3])));
+      }
+      this.xy2End = xy2EndNew;
+      this.xy1Current = this.xy1Start;
+      this.xy2Current = this.xy2Start;
+    }
+  }
+
+  draw() {
+    fill(this.col);
+    if (this.xy1Current.x == this.xy2Current.x && this.xy1Current.y == this.xy2Current.y) {
+      ellipse(this.xy2Current.x, this.xy2Current.y, this.r);
+    } else {
+      let aryPoints = getContactLine(this.xy1Current, this.xy2Current, this.r, this.r);
+      drawVertexShape(aryPoints);
+    }
+  }
+}
+
+function getContactLine(xy1, xy2, r1, r2) {
+  let xy_l;
+  let xy_s;
+  let r_l;
+  let r_s;
+  if (r1 > r2) {
+    xy_l = xy1;
+    xy_s = xy2;
+    r_l = r1;
+    r_s = r2;
+  } else {
+    xy_l = xy2;
+    xy_s = xy1;
+    r_l = r2;
+    r_s = r1;
+  }
+  let numAng = 64;
+  let aryContactLinePoints = [];
+  let d = p5.Vector.dist(xy_l, xy_s);
+  if (d <= r_l - r_s) {
+    for (let i = 0; i < numAng; i++) {
+      let vec_radius_l = createVector(0, r_l);
+      let vec = p5.Vector.add(xy_l, vec_radius_l);
+      aryContactLinePoints.push(vec);
+      vec_radius_l.rotate((2 * PI) / numAng);
+    }
+  }
+
+  let theta_l = acos((r_l - r_s) / d);
+  let vec_l_s = p5.Vector.sub(xy_s, xy_l);
+  let vec_radius_l = p5.Vector.rotate(vec_l_s, theta_l).setMag(r_l);
+
+  for (let i = 0; i < numAng + 1; i++) {
+    let vec = p5.Vector.add(xy_l, vec_radius_l);
+    aryContactLinePoints.push(vec);
+    vec_radius_l.rotate(((2 * PI - theta_l * 2) / numAng));
+  }
+  let theta_s = PI - theta_l;
+  let vec_s_l = p5.Vector.sub(xy_l, xy_s);
+  let vec_radius_s = p5.Vector.rotate(vec_s_l, theta_s).setMag(r_s);
+  for (let i = 0; i < numAng + 1; i++) {
+    let vec = p5.Vector.add(xy_s, vec_radius_s);
+    aryContactLinePoints.push(vec);
+    vec_radius_s.rotate(((2 * PI - theta_s * 2) / numAng));
+  }
+  return aryContactLinePoints;
+}
+
+function drawVertexShape(aryPoints) {
+  beginShape();
+  for (let i = 0; i < aryPoints.length; i++) {
+    vertex(aryPoints[i].x, aryPoints[i].y);
+  }
+  endShape(CLOSE);
+}
+
+function easing(unitTime, t, type, d) {
+  let value;
+  if (type == "in") {
+    value = easeIn(unitTime, t, d);
+  } else if (type == "out") {
+    value = easeOut(unitTime, t, d);
+  } else if (type == "inout") {
+    value = easeInOut(unitTime, t, d);
+  }
+  return value;
+}
+
+function easeIn(unitTime, t, d) {
+  let value = (t / unitTime) ** d;
+  return value;
+}
+
+function easeOut(unitTime, t, d) {
+  let t2 = unitTime - t;
+  let value = 1 - easeIn(unitTime, t2, d);
+  return value;
+}
+
+function easeInOut(unitTime, t, d) {
+  let t2;
+  let value;
+  if (t < unitTime / 2) {
+    t2 = t * 2;
+    value = easeIn(unitTime, t2, d) / 2;
+  } else {
+    t2 = t * 2 - unitTime;
+    value = easeOut(unitTime, t2, d) / 2 + 0.5;
+  }
+  return value;
+}
+
+function dither() {
+  let m = [
+    [0, 8, 2, 10],
+    [12, 4, 14, 6],
+    [3, 11, 1, 9],
+    [15, 7, 13, 5]
+  ];
+
+  loadPixels();
+  let d = pixelDensity();
+  for (let x = 0; x < width * d; x++) {
+    for (let y = 0; y < height * d; y++) {
+      let index = 4 * (y * width * d + x);
+      let m_x = x % 4;
+      let m_y = y % 4;
+      if (pixels[index] < (m[m_y][m_x] + 1) * 255 / 16) {
+        pixels[index] = 0;
+        pixels[index + 1] = 0;
+        pixels[index + 2] = 0;
+        pixels[index + 3] = 255;
+      } else {
+        pixels[index] = 255;
+        pixels[index + 1] = 255;
+        pixels[index + 2] = 255;
+        pixels[index + 3] = 255;
+      }
+    }
+  }
+  updatePixels();
+}
+
+function draw() {
+  clear();
+  resizeCanvas(_resolution, _resolution);
+  blendMode(MULTIPLY);
+  translate(width / 2, height / 2);
+  background(100);
+
+  for (let i = _aryPoints.length - 1; i >= 0; i--) {
+    _aryPoints[i].update();
+    _aryPoints[i].draw();
+  }
+
+  dither();
+
+  let c = get();
+  clear();
+  resizeCanvas(windowWidth, windowHeight);
+  background(100);
+  image(c, width / 2, height / 2, _minWindowWidth, _minWindowWidth);
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+            <div class="artwork-item">
+            <div class="artwork-media">
+                <div id="canvas-2" class="canvas-container"></div>
+            </div>
+            <div class="artwork-desc">
+                <div class="code-container" onclick="toggleCode(this)">
+                    <div class="code-header">
+                        <span class="code-title">p5.js code</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="code-body">
+<pre>
+// 2-1 바닥
+// 마우스 클릭 = 새로고침
+// 참고: https://openprocessing.org/sketch/1624119
+
+let _numColor;
+let _object;
+let _minWidth;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  _minWidth = min(width, height);
+
+  frameRate(30);
+  noStroke();
+  rectMode(CENTER);
+  
+  _numColor = 17;
+  _object = new GradationRect(_numColor);
+}
+
+class GradationRect {
+  constructor(numColor) {
+    this.posCent = [0, 0];
+    this.w = [_minWidth / 0.5, _minWidth / 1];
+    this.numColor = numColor;
+    this.aryGradNoiseInit = [];
+    this.gradNoiseSpeed = [0.004, 0.005]; //[for pos, for color]
+    this.aryGradNoise = []; //[value for pos, value for color, ratio for pos]
+    this.count = 0;
+    for (let i = 0; i < this.numColor; i++) {
+      this.aryGradNoiseInit[i] = [random(2000), random(2000)]; //[for pos, for color]
+      this.aryGradNoise[i] = [0, 0, 0];
+    }
+  }
+  update() {
+    let totalNoiseValPos = 0;
+    for (let i = 0; i < this.numColor; i++) {
+      this.aryGradNoise[i][0] = calcNoise(this.aryGradNoiseInit[i][0] + this.gradNoiseSpeed[0] * this.count, 2, 3); //pos
+      if (i == 0) { this.aryGradNoise[i][0] = 0; }
+      totalNoiseValPos += this.aryGradNoise[i][0];
+      this.aryGradNoise[i][1] = calcNoise(this.aryGradNoiseInit[i][1] + this.gradNoiseSpeed[1] * this.count, 3, 1); //color
+    }
+    let previousNoiseRatioPos = 0;
+    for (let i = 0; i < this.numColor; i++) {
+      previousNoiseRatioPos += this.aryGradNoise[i][0] / totalNoiseValPos;
+      this.aryGradNoise[i][2] = previousNoiseRatioPos;
+      if (i == this.numColor - 1) { this.aryGradNoise[i][2] = 1.0; }
+    }
+    this.count++;
+  }
+  draw() {
+    push();
+    let grad;
+    grad = drawingContext.createLinearGradient(-this.w[1] / 2, 0, this.w[1] / 2, 0);
+    for (let i = 0; i < this.numColor; i++) {
+      grad.addColorStop(this.aryGradNoise[i][2], color(255 * this.aryGradNoise[i][1]));
+    }
+    drawingContext.fillStyle = grad;
+    drawingContext.shadowColor = color(128);
+    drawingContext.shadowBlur = _minWidth/10;
+    translate(this.posCent[0], this.posCent[1]);
+    rect(0, 0, this.w[0], this.w[1]);
+    pop();
+  }
+}
+
+function calcNoise(noiseSeed, freq, d) {
+ let noiseVal;
+ noiseVal = (sin(2 * PI * freq * noise(noiseSeed)) * 0.5 + 0.5) ** d;
+ return noiseVal;
+}
+
+function draw() {
+  background(255);
+  translate(width/2, height/2);
+  _object.update();
+  _object.draw();
+}
+
+function screenReset() {
+  _object = new GradationRect(_numColor);
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="audio-wrapper" style="margin-top: 60px; padding-top: 60px; border-top: 1px solid #333;">
+            <audio controls controlsList="nodownload" oncontextmenu="return false" class="custom-audio">
+                <source src="Assets/audio/Part2.mp3" type="audio/mpeg">
+                브라우저가 오디오 태그를 지원하지 않습니다.
+            </audio>
+        </div>
+
+        <p style="margin-bottom: 60px;">
+            계속되는 실패, 타인과의 비교, 많은 것들이 사회를 옥죄이고 있다. 쓴웃음을 지어보지만, 기댈 곳 하나 없이 홀로 살아가는 각자의 마음 속에는 점차 “한”이 쌓여만 간다. 자신 외의 것들에 대해서는 관심을 가지지 않는 배척적인 분위기 속에서, 자유로이 숨쉬기 어려운 답답한 사회를 살아가는 이들은 힘겹게 하루하루를 연명해 나간다.
+        </p>
+
+
+        <div class="artwork-item">
+            <div class="artwork-media">
+                <div id="canvas-3" class="canvas-container"></div>
+            </div>
+            <div class="artwork-desc">
+                <div class="code-container" onclick="toggleCode(this)">
+                    <div class="code-header">
+                        <span class="code-title">p5.js code</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="code-body">
+<pre>
+// 2-2 벽면
+// 마우스 클릭 = 새로고침
+// 참고:
+// https://openprocessing.org/sketch/1858788
+// https://openprocessing.org/sketch/1858788
+// https://openprocessing.org/sketch/1858788
+
+let blackholes = []
+let stars = []
+let blackholesNum = 10
+let starsNum = 700
+let starStep = 1
+let maxStarStep = 20
+let starStepIncrement = 0.005
+let FrameRate = 30;
+let maxFrameRate = 100;
+let frameRateIncrement = 1;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight)
+  noCursor()
+  colorMode(HSB, 100)
+  strokeWeight(1)
+  for (let i = starsNum; i--;) {
+    stars.push(new Star(i))
+  }
+  frameRate(FrameRate);
+}
+
+function draw() {
+  background(0, 10)
+  const t = frameCount / 1e3
+  stroke('black')
+  for (let i = blackholesNum; i--;) {
+    const b = blackholes[i] = {
+      x: cos(t * i) * i * 50 + width / 2,
+      y: sin(t * i) * i * 50 + height / 2
+    }
+    ellipse(b.x, b.y, 0.1, 0.1)
+  }
+  
+  stars.forEach(s => s.update())
+  
+//   if (frameRate() < maxFrameRate) {
+//     frameRate(frameRate() + frameRateIncrement);
+//   }
+  
+//   if (starStep < maxStarStep) {
+//     starStep += starStepIncrement
+//   }
+}
+
+class Star {
+  constructor(i) {
+    const x = cos(i) * 280 + width / 2
+    const y = sin(i) * 280 + height / 2
+    this.x = x
+    this.y = y
+    this.startx = x
+    this.starty = y
+  }
+  
+  update() {
+    const angle = this.sumAngles(this.x, this.y)
+    if (!angle) return
+    stroke(255)
+    line(this.x, this.y, this.x += cos(angle) * starStep, this.y += sin(angle) * starStep)
+  }
+  
+  sumAngles(x, y) {
+    let angle = 0
+    for (const b of blackholes) {
+      const dy = b.y - y
+      const dx = b.x - x
+      angle += atan2(dy, dx) // This is the keyline
+      if (sqrt(dx ** 2 + dy ** 2) < starStep) {
+        this.x = this.startx
+        this.y = this.starty
+        return false
+      }
+    }
+    return angle
+  }
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="artwork-item">
+            <div class="artwork-media">
+                <div id="canvas-4" class="canvas-container"></div>
+            </div>
+            <div class="artwork-desc">
+                <div class="code-container" onclick="toggleCode(this)">
+                    <div class="code-header">
+                        <span class="code-title">p5.js code</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="code-body">
+<pre>
+// 2-2 바닥
+// 마우스 클릭 = 새로고침
+// 참고: https://openprocessing.org/sketch/1284913
+
+let incX = 0.04;
+let incY = 0.05;
+let distance = 10;
+let wavesHeight = 5;
+let looping = true;
+let frameCount = 0;
+let zOff = 0;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+  noiseDetail(1);
+  frameRate(30);
+}
+
+function draw() {
+  zOff = frameCount * 0.01;
+  background(0);
+  strokeWeight(0.5);
+  stroke(0);
+  let yOff = 0;
+
+  for (let y = -wavesHeight; y < height + wavesHeight; y += distance) {
+    let xOff = 0;
+    let r = xOff;
+    beginShape();
+
+    for (let x = -wavesHeight; x < width * 2; x += distance) {
+      let n = noise(xOff, yOff, zOff);
+      let g = n;
+      let b = yOff;
+      let val = map(n, 0, 1, -wavesHeight, wavesHeight);
+      curveVertex(x, y + val);
+      xOff += incX;
+      r = map(xOff, 0, 3.5, 255, 255);
+      g = map(n, 0.2, 0.7, 255, 255);
+      b = map(yOff, 0, 4, 255, 255);
+      fill(r, g, b, b * 1.5);
+    }
+    endShape();
+    yOff += incY;
+  }
+
+  frameCount++;
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="artwork-item">
+            <div class="artwork-media">
+                 <div id="canvas-5" class="canvas-container"></div>
+            </div>
+            <div class="artwork-desc">
+                <div class="code-container" onclick="toggleCode(this)">
+                    <div class="code-header">
+                        <span class="code-title">p5.js code</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="code-body">
+<pre>
+// 2-4 벽면
+// 마우스 클릭 = 새로고침
+// 키보드 = 일시정지
+// 참고 : https://openprocessing.org/sketch/1232809
+
+let message = "한"; // 텍스트 메시지
+let fontFile = "NanumMyeongjoExtraBold.ttf";
+let font;
+let fontSize = 500; // 텍스트 크기
+let textAlpha = 1; // 텍스트 투명도
+
+let backgroundColor = 0; // 배경색
+let strokeAlpha = 10; // 선의 투명도
+let strokeColor = 255; // 선의 색상
+
+let points = []; // 포인트 배열
+let fontSampleFactor = 0.3; // 텍스트의 포인트 개수
+let noiseZoom = 0.006; // 펄린 노이즈의 확대 비율
+let noiseOctaves = 4; // 노이즈의 옥타브 개수
+let noiseFalloff = 0.5; // 노이즈 계층의 감쇠 정도
+let lineSpeed = 0.2; // 각 포인트가 한 프레임에 이동할 수 있는 최대 거리
+
+let isLooping = true; // 루프 여부
+
+function preload() { // 폰트 불러오기
+  font = loadFont(fontFile);
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight); // 캔버스 생성
+  background(backgroundColor); // 배경색 설정
+  textFont(font); // 폰트 설정
+  textSize(fontSize); // 폰트 크기 설정
+  fill(backgroundColor, textAlpha); // 텍스트 설정
+  stroke(strokeColor, strokeAlpha); // 선 설정
+  noiseDetail(noiseOctaves, noiseFalloff); // 노이즈 설정
+
+  // 시작 포인트 설정
+  points = font.textToPoints(
+    message,
+    width / 2 - textWidth(message) / 2,
+    height / 2.2 + textWidth(message) / 2,
+    fontSize,
+    { sampleFactor: fontSampleFactor } );
+}
+
+function draw() {
+  if (keyIsPressed === false) { // 키보드를 누르고 있을 때 일시정지
+    for (let pt = 0; pt < points.length; pt++) {
+      let p = points[pt];
+      let noiseX = p.x * noiseZoom;
+      let noiseY = p.y * noiseZoom;
+      let noiseZ = 0;
+
+      let newPX = p.x + map(noise(noiseX, noiseY, noiseZ), 0, 1, -lineSpeed, lineSpeed);
+      let newPY = p.y + map(noise(noiseX, noiseY, noiseZ + 214), 0, 1, -lineSpeed, lineSpeed);
+
+      line(p.x, p.y, newPX, newPY);
+      p.x = newPX;
+      p.y = newPY;
+    }
+  }
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="artwork-item">
+            <div class="artwork-media">
+                 <div id="canvas-6" class="canvas-container"></div>
+            </div>
+            <div class="artwork-desc">
+                <div class="code-container" onclick="toggleCode(this)">
+                    <div class="code-header">
+                        <span class="code-title">p5.js code</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="code-body">
+<pre>
+// 2-4 바닥
+// 마우스 클릭 = 새로고침
+// 참고: https://openprocessing.org/sketch/1414758
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  fill(0);
+  noStroke();
+  rectMode(CENTER);
+  frameRate(16);
+  noiseDetail(2, 0.5); // 노이즈 디테일 및 범위를 조절
+}
+
+function draw() {
+  background(255);
+  for (let x = 10; x < width; x += 10) {
+    for (let y = 10; y < height; y += 10) {
+      let n = noise(x * 0.01, y * 0.01, frameCount * 0.16); // 프레임 카운트에 따른 노이즈 값의 변화를 크게 조절
+      push();
+      translate(x, y);
+      rotate(TWO_PI * n);
+      scale(30 * n); // 스케일 값을 더 크게 조절
+      rect(0, 0, 1, 1);
+      pop();
+    }
+  }
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+        <footer class="footer">
+        <div class="footer-left">
+            <img src="Assets/images/logo.svg" alt="느루" class="footer-logo">
+            <p>한꺼번에 몰아치지 아니하고 오래도록.</p>
+            <a href="https://www.instagram.com/neuru_scg/" target="_blank" class="sns-link">
+                <img src="Assets/images/instagram.svg" alt="인스타그램" class="sns-icon-img">
+            </a>
+        </div>
+        <div class="footer-right">
+            <div class="footer-col">
+                <h4>팀 느루</h4>
+                <ul>
+                    <li>김성준</li><li>서리라</li><li>이서연</li><li>천사은</li><li>한수민</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>협력</h4>
+                <ul>
+                    <li>김단</li><li>박규리</li><li>서민주</li><li>임지우</li><li>정지혜</li><li>홍승주</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>웹 개발</h4>
+                <ul><li>천사은</li></ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
